@@ -1,4 +1,4 @@
-# theme-switcher-demo
+# Theme switcher demo
 
 ## Project setup
 ```
