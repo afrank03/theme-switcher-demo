@@ -4,10 +4,16 @@
     <div class="c-login">
       <div class="c-login__form">
         <form>
-          <span class="c-app-name">Foo App</span>
-          <input type="text" placeholder="Login" />
-          <input type="text" placeholder="Password" />
-          <input type="button" value="Sumbit" />
+          <span class="c-app-name">T.S. app</span>
+          <div class="c-login__field">
+            <img src="./../assets/user.svg" width="20">
+            <input type="text" placeholder="Username" maxlength="10" />
+          </div>
+           <div class="c-login__field">
+             <img src="./../assets/key.png" width="20">
+             <input type="password" placeholder="Password" />
+           </div>
+          <input type="button" value="Login" />
         </form>
       </div>
     </div>
@@ -57,6 +63,10 @@ export default {
            }
         }
       }
+    }
+
+    &__field {
+      display: flex;
     }
   }
 }
