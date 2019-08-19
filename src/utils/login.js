@@ -1,7 +1,7 @@
 const usersStore = [
   {
-    username: "a",
-    password: "a",
+    username: "fooTest",
+    password: "fooTest123",
     details: {
       fullName: "Mr Foo Bob Johnson",
       avatar: "./../assets/logo.png"
