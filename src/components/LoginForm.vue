@@ -3,17 +3,33 @@
     <h1>Login</h1>
     <div class="c-login">
       <div class="c-login__form">
+        <div v-if="successMessage" class="c-login__success-message">
+          <p>{{successMessage}}</p>
+        </div>
         <form>
           <span class="c-app-name">T.S. app</span>
           <div class="c-login__field">
             <img src="./../assets/user.svg" width="20">
-            <input type="text" placeholder="Username" :maxlength="inputLimit" />
+            <input
+              v-model="username"
+              type="text"
+              placeholder="Username"
+              :maxlength="inputLimit"
+            />
           </div>
            <div class="c-login__field">
              <img src="./../assets/key.png" width="20">
-             <input type="password" :maxlength="inputLimit" placeholder="Password" />
+             <input
+              v-model="password"
+              type="password"
+              :maxlength="inputLimit"
+              placeholder="Password"
+            />
            </div>
-          <input type="button" value="Login" />
+           <div v-if="loginErrorMessage" class="c-login__error">
+             <p>{{loginErrorMessage}}</p>
+           </div>
+          <input type="button" value="Login" @click="login()"/>
         </form>
       </div>
     </div>
@@ -21,14 +37,36 @@
 </template>
 
 <script>
+import Login from '../utils/login';
+
+const config = {
+  loginErrorMessage: 'You have entered wrong user details.',
+  successMessage: 'You have successfully logged in.',
+};
+
 export default {
   name: 'LoginForm',
   data() {
     return {
       inputLimit: 10,
+      username: null,
+      password: null,
+      loginErrorMessage: null,
+      successMessage: null,
     };
   },
-  methods: {},
+  methods: {
+    login() {
+      try {
+        this.loginErrorMessage = null;
+        const user = Login.login(this.username, this.password);
+        this.successMessage = config.successMessage;
+        this.$store.dispatch('setUser', user);
+      } catch (e) {
+        this.loginErrorMessage = config.loginErrorMessage;
+      }
+    },
+  },
 };
 </script>
 
@@ -36,6 +74,14 @@ export default {
 .c-login {
   display: flex;
   justify-content: center;
+
+  &__success-message {
+    color: red;
+  }
+
+  &__error {
+    color: green;
+  }
 
   &__form {
     form {
