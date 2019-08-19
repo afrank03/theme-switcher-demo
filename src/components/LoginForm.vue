@@ -7,11 +7,11 @@
           <span class="c-app-name">T.S. app</span>
           <div class="c-login__field">
             <img src="./../assets/user.svg" width="20">
-            <input type="text" placeholder="Username" maxlength="10" />
+            <input type="text" placeholder="Username" :maxlength="inputLimit" />
           </div>
            <div class="c-login__field">
              <img src="./../assets/key.png" width="20">
-             <input type="password" placeholder="Password" />
+             <input type="password" :maxlength="inputLimit" placeholder="Password" />
            </div>
           <input type="button" value="Login" />
         </form>
@@ -24,7 +24,9 @@
 export default {
   name: 'LoginForm',
   data() {
-    return {};
+    return {
+      inputLimit: 10,
+    };
   },
   methods: {},
 };
