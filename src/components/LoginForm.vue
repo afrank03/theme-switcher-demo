@@ -13,7 +13,7 @@
         <form>
           <span class="c-app-name">T.S. app</span>
           <div class="c-login__field">
-            <!-- <img src="./../assets/user.svg" width="20"> -->
+            <img src="./../assets/user.svg" width="20">
             <input
               v-model="username"
               type="text"
@@ -22,7 +22,7 @@
             />
           </div>
            <div class="c-login__field">
-             <!-- <img src="./../assets/key.png" width="20"> -->
+             <img src="./../assets/key.png" width="20">
              <input
               v-model="password"
               type="password"
@@ -49,7 +49,7 @@ export default {
   name: 'LoginForm',
   data() {
     return {
-      inputLimit: 100,
+      inputLimit: 10,
       username: null,
       password: null,
       loginErrorMessage: null,
