@@ -22,7 +22,7 @@
             />
           </div>
            <div class="c-login__field">
-             <img src="./../assets/key.png" width="20">
+             <img src="./../assets/key.png" width="20" />
              <input
               v-model="password"
               type="password"
@@ -30,7 +30,8 @@
               placeholder="Password"
             />
            </div>
-          <input type="button" value="Login" @click="login()"/>
+          <img v-if="loading" class="c-login__throbber" src="./../assets/throbber.svg" width="20" />
+          <input v-else type="button" value="Login" @click="login()"/>
         </form>
       </div>
     </div>
@@ -39,6 +40,7 @@
 
 <script>
 import Login from '../utils/login';
+import { setTimeout } from 'timers';
 
 const config = {
   loginErrorMessage: 'You have entered invalid login details.',
@@ -54,18 +56,24 @@ export default {
       password: null,
       loginErrorMessage: null,
       successMessage: null,
+      loading: false
     };
   },
   methods: {
     login() {
-      try {
-        this._resetMessages();
-        const user = Login.login(this.username, this.password);
-        this.successMessage = config.successMessage;
-        this.$store.dispatch('setUser', user);
-      } catch (e) {
-        this.loginErrorMessage = config.loginErrorMessage;
-      }
+      this.loading = true;
+      
+      setTimeout(() => {
+        try {
+          this._resetMessages();
+          const user = Login.login(this.username, this.password);
+          this.successMessage = config.successMessage;
+          this.$store.dispatch('setUser', user);
+        } catch (e) {
+          this.loginErrorMessage = config.loginErrorMessage;
+        }
+        this.loading = false;
+      }, 1000);
     },
     _resetMessages() {
       this.loginErrorMessage = null;
@@ -121,6 +129,10 @@ export default {
     &__field {
       display: flex;
     }
+  }
+
+  &__throbber {
+    margin: 10px;
   }
 }
 </style>
