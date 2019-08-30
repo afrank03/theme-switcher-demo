@@ -10,11 +10,6 @@
 
 export default {
   name: 'UserProfie',
-  data() {
-    return {
-      user: null
-    }
-  },
   methods: {
     logout() {
       this.$store.dispatch('setUser', null);
