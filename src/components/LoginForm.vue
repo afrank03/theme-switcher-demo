@@ -3,10 +3,6 @@
     <h1>Login</h1>
     <div class="c-login">
       <div class="c-login__form">
-        <!-- Candidate for seprate component -->
-        <div v-if="successMessage" class="c-login__success-message">
-          <p>{{successMessage}}</p>
-        </div>
         <div v-if="loginErrorMessage" class="c-login__error">
           <p>{{loginErrorMessage}}</p>
         </div>
@@ -44,7 +40,6 @@ import { setTimeout } from 'timers';
 
 const config = {
   loginErrorMessage: 'You have entered invalid login details.',
-  successMessage: 'You have successfully logged in.',
 };
 
 export default {
@@ -66,9 +61,15 @@ export default {
       setTimeout(() => {
         try {
           this._resetMessages();
+         
           const user = Login.login(this.username, this.password);
-          this.successMessage = config.successMessage;
+         
           this.$store.dispatch('setUser', user);
+         
+         /**
+           * @description If user logged in successfully, rediect to profile page.
+           */
+          this.$router.push('/profile');
         } catch (e) {
           this.loginErrorMessage = config.loginErrorMessage;
         }
