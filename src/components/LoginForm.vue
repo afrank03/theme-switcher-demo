@@ -75,10 +75,11 @@ export default {
           this._resetMessages();
           const user = Login.login(this.username, this.password);
           this.$store.dispatch('setUser', user);
+          this._loadUserProfileAvatar();
         } catch (e) {
           this.loginErrorMessage = config.loginErrorMessage;
         }
-        this._loadUserProfileAvatar();
+
         this.loading = false;
       }, 1000);
     },
@@ -104,11 +105,11 @@ export default {
   justify-content: center;
 
   &__success-message {
-    color: green;
+    color: $colour-green;
   }
 
   &__error {
-    color: red;
+    color: $colour-red;
   }
 
   &__form {
@@ -118,11 +119,11 @@ export default {
       align-items: center;
       justify-content: center;
       min-width: 300px;
-      border: 1px solid #ddd;
+      border: 1px solid $colour-grey-light;
       padding: 5px;
 
       h2 {
-        color: green;
+        color: $colour-green;
       }
     }
 
@@ -142,11 +143,11 @@ export default {
         max-width: 200px;
 
         &[type=button] {
-           border: 1px solid #aaa;
-           background: #fdfdfd;
+           border: 1px solid $colour-grey;
+           background: $colour-grey-lighter;
 
            &:hover {
-             background: #ddd;
+             background: $colour-grey-light;
              cursor: pointer;
            }
         }
