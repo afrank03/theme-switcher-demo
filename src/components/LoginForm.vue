@@ -66,9 +66,6 @@ export default {
       profileAvatar: false
     };
   },
-  created() {
-    console.log(123);
-  },
   methods: {
     login() {
       this.loading = true;
