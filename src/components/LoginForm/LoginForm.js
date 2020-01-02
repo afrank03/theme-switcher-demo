@@ -1,12 +1,8 @@
-import Login from "../utils/login";
-import ProfileAvatar from "./partials/ProfileAvatar.vue";
+import Login from "../../utils/login";
+import ProfileAvatar from "../partials/ProfileAvatar.vue";
 import { setTimeout } from "timers";
 import { ref, onMounted } from "@vue/composition-api";
-
-const config = {
-  loginErrorMessage: "You have entered invalid login details.",
-  loginSuccessMessage: "You have successfully logged in."
-};
+import { config } from "./config";
 
 export default {
   name: "LoginForm",
@@ -23,7 +19,7 @@ export default {
     /**
      * @description Component constants ========================================
      */
-    const inputLimit = 10;
+    const inputLimit = config.inputLimit;
     const successMessage = ref(null);
     const profileAvatar = ref(false);
 
@@ -76,7 +72,7 @@ export default {
      * @description Lifecycle methods ==========================================
      */
     onMounted(() => {
-      console.log("Components is mounted"); // Added for test purposes
+      console.log("v3 Mounted"); // Added for test purposes
     });
 
     /**
@@ -92,5 +88,8 @@ export default {
       loginErrorMessage,
       successMessage
     };
+  },
+  mounted() {
+    console.log("v2 Mounted");
   }
 };

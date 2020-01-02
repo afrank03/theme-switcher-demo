@@ -21,7 +21,7 @@
             <span class="c-app-name">T.S. app</span>
             <div class="c-login__field">
               <img
-                src="./../assets/user.svg"
+                src="./../../assets/user.svg"
                 width="20"
               >
               <input
@@ -33,7 +33,7 @@
             </div>
             <div class="c-login__field">
               <img
-                src="./../assets/key.png"
+                src="./../../assets/key.png"
                 width="20"
               />
               <input
@@ -46,7 +46,7 @@
             <img
               v-if="loading"
               class="c-login__throbber"
-              src="./../assets/throbber.svg"
+              src="./../../assets/throbber.svg"
               width="20"
             />
             <input
