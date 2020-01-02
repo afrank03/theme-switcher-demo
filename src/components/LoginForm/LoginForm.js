@@ -9,13 +9,7 @@ export default {
   components: {
     ProfileAvatar
   },
-  setup(props, context) {
-    /**
-     * @description Context constants ==========================================
-     */
-    const store = context.root.$store;
-    const router = context.root.$router;
-
+  setup(props, { root: { $store, $router } }) {
     /**
      * @description Component constants ========================================
      */
@@ -40,7 +34,7 @@ export default {
 
           const user = Login.login(username.value, password.value);
 
-          store.dispatch("setUser", user);
+          $store.dispatch("setUser", user);
 
           _loadUserProfileAvatar();
         } catch (e) {
@@ -56,7 +50,7 @@ export default {
      */
     const _loadUserProfileAvatar = () => {
       setTimeout(() => {
-        router.push("/profile");
+        $router.push("/profile");
       }, 2000);
 
       successMessage.value = config.loginSuccessMessage;
