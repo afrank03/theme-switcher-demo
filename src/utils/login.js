@@ -1,7 +1,7 @@
 const usersStore = [
   {
-    username: "fooTest",
-    password: "fooTest123",
+    username: "f",
+    password: "f",
     details: {
       fullName: "Mr Foo Bob Johnson",
       avatar: "./../assets/logo.png"
@@ -14,15 +14,13 @@ class Login {
     const user = this._findUser(username, password);
     console.log(user);
 
-    if (!user) throw Error('User not found.');
+    if (!user) throw Error("User not found.");
 
     return user;
   }
 
   _findUser(username, password) {
-    return usersStore.find(
-      el => el.username === username && el.password === password
-    );
+    return usersStore.find(el => el.username === username && el.password === password);
   }
 }
 export default new Login();
